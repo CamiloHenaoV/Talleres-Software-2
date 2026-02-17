@@ -43,6 +43,13 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Mockito para pruebas unitarias con mocks -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.4.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
