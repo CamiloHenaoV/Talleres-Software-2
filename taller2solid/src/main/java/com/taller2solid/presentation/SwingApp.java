@@ -9,42 +9,6 @@ import com.taller2solid.service.UserService;
 import javax.swing.*;
 
 /**
- * Clase principal para la aplicación GUI con Swing
- * 
- * 
- * 
- * 
- * Todo el backend ya está funcionando. Solo necesitas crear la interfaz gráfica.
- * 
- * 
- * Igual falta que collazos haga la parte del service :P
- * 
- * Pero igual te dejo aquí un resumen de los métodos que el UserService debería tener, para que puedas usarlos desde la GUI:
- * 
- * 1. createUser(User user) 
- *    - Crea un nuevo usuario
- *    - Retorna: ServiceResult con .isSuccess() y .getMessage()
- * 
- * 2. updateUser(User user)
- *    - Actualiza un usuario existente
- *    - Retorna: ServiceResult
- * 
- * 3. deleteUser(Integer id)
- *    - Elimina un usuario por ID
- *    - Retorna: ServiceResult
- * 
- * 4. findUserById(Integer id)
- *    - Busca un usuario por ID
- *    - Retorna: Optional<User>
- * 
- * 5. findAllUsers()
- *    - Lista todos los usuarios
- *    - Retorna: List<User>
- * 
- * 6. authenticate(String username, String password)
- *    - Autentica un usuario
- *    - Retorna: ServiceResult con .getUser() si es exitoso
- * 
  * EJEMPLO DE USO:
  * 
  *   // Autenticar usuario
@@ -96,7 +60,7 @@ public class SwingApp {
         // Ejecutar la aplicación en el Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             // TODO: Tu compañero debe descomentar esto cuando cree LoginFrame
-            // new LoginFrame(userService).setVisible(true);
+            new LoginFrame(userService).setVisible(true);
             
             // Mientras tanto, mostrar mensaje
             JOptionPane.showMessageDialog(null,
@@ -115,6 +79,7 @@ public class SwingApp {
      * Tu compañero NO necesita modificar esto
      */
     private static void initializeServices() {
+        
         // Configurar repositorio (capa de acceso a datos)
         IUserRepository repository = new UserRepositorySQLite("usuarios.db");
         repository.initDatabase();
