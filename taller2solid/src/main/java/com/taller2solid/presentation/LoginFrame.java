@@ -69,7 +69,6 @@ public class LoginFrame extends JFrame {
 
             dispose();
 
-            // 🔥 AQUÍ PASAMOS EL USUARIO AL MAINFRAME
             new MainFrame(userService, loggedUser).setVisible(true);
 
         } else {
@@ -77,3 +76,4 @@ public class LoginFrame extends JFrame {
         }
     }
 }
+
