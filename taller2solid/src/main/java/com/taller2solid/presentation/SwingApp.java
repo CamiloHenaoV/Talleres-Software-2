@@ -48,7 +48,6 @@ public class SwingApp {
     
     /**
      * Obtener el servicio de usuarios
-     * Puedes llamar a SwingApp.getUserService() desde cualquier ventana
      */
     public static UserService getUserService() {
         return userService;
