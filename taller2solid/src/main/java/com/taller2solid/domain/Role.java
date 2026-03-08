@@ -6,6 +6,8 @@ package com.taller2solid.domain;
 public enum Role {
     ADMIN("Administrador"),
     USER("Usuario"),
+    MEDICO("Medico"),
+    TERAPEUTA("Terapeuta"),
     GUEST("Invitado");
     
     private final String description;
