@@ -4,3 +4,16 @@ target/
 .project
 .classpath
 .vscode/
+.idea/
+*.iml
+*.iws
+out/
+target/
+build/
+.DS_Store
+Thumbs.db
+# Logs
+*.log
+# Archivos temporales
+*.tmp
+*.temp
