@@ -29,7 +29,7 @@ public class MainFrame extends JFrame implements LibraryObserver {
         kernel.getEventBus().subscribe(this);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(980, 520);
+        setSize(980, 650);
         setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(8,8));
@@ -91,9 +91,10 @@ public class MainFrame extends JFrame implements LibraryObserver {
     }
 
     private JComponent buildBottom() {
-        JPanel p = new JPanel(new BorderLayout());
-        p.setBorder(BorderFactory.createEmptyBorder(4,8,8,8));
-        p.add(lblStatus, BorderLayout.CENTER);
+        JPanel p = new JPanel(new BorderLayout(8, 8));
+        p.setBorder(BorderFactory.createEmptyBorder(0, 8, 8, 8));
+        p.add(new DashboardObserverView(controller, kernel.getEventBus()), BorderLayout.CENTER);
+        p.add(lblStatus, BorderLayout.SOUTH);
         return p;
     }
 

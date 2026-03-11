@@ -1,6 +1,8 @@
 package co.unicauca.biblioteca.model.service;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import co.unicauca.biblioteca.core.events.LibraryEvent;
@@ -19,11 +21,15 @@ public class BookService {
     private final BookRepository repository;
     private final LibraryEventBus eventBus;
     private final Optional<PersistenceProvider> persistence;
+    private String lastAction = "—";
+    private String lastTime   = "—";
+    private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public BookService(BookRepository repository, LibraryEventBus eventBus, Optional<PersistenceProvider> persistence) {
         this.repository = repository;
         this.eventBus = eventBus;
         this.persistence = persistence;
+
 
         // Cargar datos desde plugin si está disponible
         persistence.ifPresent(p -> {
@@ -47,16 +53,23 @@ public class BookService {
 
     public void create(Book book) {
         repository.add(book);
+        recordAction("Libro creado: " + book.getTitle());
+        eventBus.publish(new LibraryEvent(LibraryEventType.BOOK_CREATED, "Libro creado: " + book.getTitle()));
         persistAndNotify("Libro creado.");
     }
 
     public void update(String originalIsbn, Book updated) {
         repository.update(originalIsbn, updated);
+        recordAction("Libro actualizado: " + updated.getTitle());
+        eventBus.publish(new LibraryEvent(LibraryEventType.BOOK_UPDATED, "Libro actualizado: " + updated.getTitle()));
         persistAndNotify("Libro actualizado.");
     }
 
     public void delete(String isbn) {
+        String title = repository.findByIsbn(isbn).get().getTitle();
         repository.delete(isbn);
+        recordAction("Libro eliminado: " + title);
+        eventBus.publish(new LibraryEvent(LibraryEventType.BOOK_DELETED, "Libro eliminado: " + title));
         persistAndNotify("Libro eliminado.");
     }
 
@@ -74,5 +87,14 @@ public class BookService {
             }
         });
         eventBus.publish(new LibraryEvent(LibraryEventType.BOOKS_CHANGED, message));
+    }
+    public int getTotalBooks() {
+        return repository.findAll().size();
+    }
+    public String getLastAction() { return lastAction; }
+    public String getLastTime()   { return lastTime; }
+    private void recordAction(String message) {
+        lastAction = message;
+        lastTime   = LocalTime.now().format(TIME_FMT);
     }
 }

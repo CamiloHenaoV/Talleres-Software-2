@@ -36,4 +36,7 @@ public class BookController {
     public Optional<Book> findByIsbn(String isbn) {
         return service.findByIsbn(isbn);
     }
+    public int getTotalBooks()    { return service.getTotalBooks(); }
+    public String getLastAction() { return service.getLastAction(); }
+    public String getLastTime()   { return service.getLastTime(); }
 }
