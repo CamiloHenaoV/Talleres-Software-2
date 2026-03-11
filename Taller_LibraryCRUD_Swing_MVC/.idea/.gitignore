@@ -9,18 +9,9 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 # IntelliJ IDEA
+# IntelliJ
 .idea/
 *.iml
-*.iws
 out/
-# Archivos de compilación
-target/
-build/
-# Archivos de sistema
-.DS_Store
-Thumbs.db
-# Logs
-*.log
-# Archivos temporales
-*.tmp
-*.temp
+!/.idea/codeStyles
+!/.idea/inspectionProfiles
