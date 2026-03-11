@@ -1,0 +1,2 @@
+co.unicauca.biblioteca.plugins.persistence.csv.CsvPersistencePlugin
+co.unicauca.biblioteca.plugins.report.simple.SimpleTxtReportPlugin
